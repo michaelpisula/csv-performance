@@ -10,5 +10,8 @@ repositories {
 }
 
 dependencies {
-    compile 'org.codehaus.groovy:groovy-all:2.1.4'
+    groovy 'org.codehaus.groovy:groovy-all:2.1.4' // bekomme sonst Fehler (You must assign Groovy library...)
+    groovy 'com.google.guava:guava:14.0.1'
+    groovy 'org.apache.commons:commons-lang3:3.1'
+    groovy 'com.typesafe.akka:akka-actor_2.10:2.2.0-RC1'
 }
