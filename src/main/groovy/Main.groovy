@@ -1,5 +1,6 @@
 import csv.performance.CsvReader
 import csv.performance.Java7Base
+import csv.performance.Java7RandomAccessFile
 
 class Main {
 
@@ -7,6 +8,7 @@ class Main {
         def path = 'data.csv'
         generateTestFile(path, [lineCount: 100_000, fieldCount: 50, fieldLength: 10])
         benchmarkImplementation(Java7Base, path)
+        benchmarkImplementation(Java7RandomAccessFile, path)
     }
 
     private static void benchmarkImplementation(Class<? extends CsvReader> csvReaderClass, String path) {
