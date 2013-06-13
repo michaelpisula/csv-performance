@@ -29,6 +29,10 @@ class Main {
         def file = new File(path)
         file.delete()
         def fields = (0 ..< csvParams.fieldCount).collect{ 'x' * csvParams.fieldLength }.join(',')
-        csvParams.lineCount.times{ lineIndex -> file << "${lineIndex},${fields}${System.lineSeparator()}" }
+        file.withWriterAppend { out ->
+            for (lineIndex in (0 ..< csvParams.lineCount)) {
+                out.println("${lineIndex},${fields}")
+            }
+        }
     }
 }
