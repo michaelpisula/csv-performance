@@ -1,6 +1,5 @@
 package csv.performance;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
@@ -9,7 +8,7 @@ public class Java7RandomAccessFile implements CsvReader {
     @Override
     public long processFile(String path) throws IOException {
         long lineCount = 0;
-        try (RandomAccessFile in = new RandomAccessFile(new File(path), "r")) {
+        try (RandomAccessFile in = new RandomAccessFile(path, "r")) {
             String line;
             while ((line = in.readLine()) != null) {
                 String[] fields = processLine(line);
