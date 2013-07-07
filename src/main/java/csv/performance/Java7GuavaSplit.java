@@ -7,6 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import com.google.common.base.Splitter;
+import com.google.common.collect.Iterables;
 
 public class Java7GuavaSplit implements CsvReader {
 
@@ -18,19 +19,16 @@ public class Java7GuavaSplit implements CsvReader {
         try (BufferedReader in = Files.newBufferedReader(Paths.get(path), StandardCharsets.UTF_8)) {
             String line;
             while ((line = in.readLine()) != null) {
-                Iterable<String> fields = processLineWithGuava(line);
+                String[] fields = processLine(line);
                 lineCount++;
             }
         }
         return lineCount;
     }
 
-    public Iterable<String> processLineWithGuava(String line) {
-        return splitter.split(line);
-    }
-
     @Override
     public String[] processLine(String line) {
-        throw new RuntimeException("not implemented");
+        Iterable<String> fields = splitter.split(line);
+        return Iterables.toArray(fields, String.class);
     }
 }
