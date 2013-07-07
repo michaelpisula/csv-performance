@@ -10,6 +10,8 @@ import com.google.common.base.Splitter;
 
 public class Java7GuavaSplit implements CsvReader {
 
+    private final Splitter splitter = Splitter.on(',');
+
     @Override
     public long processFile(String path) throws IOException {
         long lineCount = 0;
@@ -24,7 +26,7 @@ public class Java7GuavaSplit implements CsvReader {
     }
 
     public Iterable<String> processLineWithGuava(String line) {
-        return Splitter.on(',').split(line);
+        return splitter.split(line);
     }
 
     @Override
