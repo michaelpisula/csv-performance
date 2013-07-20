@@ -3,6 +3,7 @@ import csv.performance.Java7Base
 import csv.performance.Java7CommonsSplit
 import csv.performance.Java7GuavaSplit
 import csv.performance.Java7RandomAccessFile
+import csv.performance.Java7ReadingAndSplittingThread
 
 class Main {
 
@@ -13,6 +14,7 @@ class Main {
         benchmarkImplementation(Java7CommonsSplit, path)
         benchmarkImplementation(Java7GuavaSplit, path)
         benchmarkImplementation(Java7RandomAccessFile, path)
+        benchmarkImplementation(Java7ReadingAndSplittingThread, path)
     }
 
     private static void benchmarkImplementation(Class<? extends CsvReader> csvReaderClass, String path) {
