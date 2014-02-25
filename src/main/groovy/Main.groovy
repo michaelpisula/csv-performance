@@ -18,16 +18,18 @@ class Main {
     }
 
     private static void benchmarkImplementation(Class<? extends CsvReader> csvReaderClass, String path) {
-        try {
-            long start = System.currentTimeMillis()
-            CsvReader csvReader = csvReaderClass.newInstance()
-            long lineCount = csvReader.processFile(path)
-            long end = System.currentTimeMillis()
-            long executionTimeMs = end - start
-            long linesPerSecond = lineCount / executionTimeMs * 1000
-            println("${csvReaderClass.simpleName}: ${executionTimeMs} ms / ${lineCount} lines => ${linesPerSecond} lines/s")
-        } catch (e) {
-            println("An error occured for class ${csvReaderClass.canonicalName}: ${e.message}")
+        3.times{
+            try {
+                long start = System.currentTimeMillis()
+                CsvReader csvReader = csvReaderClass.newInstance()
+                long lineCount = csvReader.processFile(path)
+                long end = System.currentTimeMillis()
+                long executionTimeMs = end - start
+                long linesPerSecond = lineCount / executionTimeMs * 1000
+                println("${csvReaderClass.simpleName}: ${executionTimeMs} ms / ${lineCount} lines => ${linesPerSecond} lines/s")
+            } catch (e) {
+                println("An error occured for class ${csvReaderClass.canonicalName}: ${e.message}")
+            }
         }
     }
 
