@@ -4,6 +4,7 @@ import csv.performance.Java7CommonsSplit
 import csv.performance.Java7GuavaSplit
 import csv.performance.Java7RandomAccessFile
 import csv.performance.Java7ReadingAndSplittingThread
+import csv.performance.Java8Stream
 
 class Main {
 
@@ -11,6 +12,7 @@ class Main {
         def path = 'data.csv'
         generateTestFile(path, [lineCount: 1_000_000, fieldCount: 50, fieldLength: 10])
         benchmarkImplementation(Java7Base, path)
+        benchmarkImplementation(Java8Stream, path)
         benchmarkImplementation(Java7CommonsSplit, path)
         benchmarkImplementation(Java7GuavaSplit, path)
         benchmarkImplementation(Java7RandomAccessFile, path)
