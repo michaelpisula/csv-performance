@@ -9,12 +9,13 @@ class Main {
 
     static void main(String[] args) {
         def path = 'data.csv'
-        generateTestFile(path, [lineCount: 100_000, fieldCount: 50, fieldLength: 10])
+        generateTestFile(path, [lineCount: 1_000_000, fieldCount: 50, fieldLength: 10])
         benchmarkImplementation(Java7Base, path)
         benchmarkImplementation(Java7CommonsSplit, path)
         benchmarkImplementation(Java7GuavaSplit, path)
         benchmarkImplementation(Java7RandomAccessFile, path)
         benchmarkImplementation(Java7ReadingAndSplittingThread, path)
+        deleteTestFile(path)
     }
 
     private static void benchmarkImplementation(Class<? extends CsvReader> csvReaderClass, String path) {
@@ -34,13 +35,17 @@ class Main {
     }
 
     private static generateTestFile(path, csvParams) {
+        deleteTestFile(path)
         def file = new File(path)
-        file.delete()
         def fields = (0 ..< csvParams.fieldCount).collect{ 'x' * csvParams.fieldLength }.join(',')
         file.withWriterAppend('UTF-8') { out ->
             for (lineIndex in (0 ..< csvParams.lineCount)) {
                 out.println("${lineIndex},${fields}")
             }
         }
+    }
+
+    private static deleteTestFile(path) {
+        new File(path).delete()
     }
 }
