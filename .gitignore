@@ -1,6 +1,7 @@
 .classpath
 .gradle/
 .groovy/
+.idea/
 .project
 .settings/
 *.iml
@@ -9,3 +10,6 @@
 data.csv
 bin/
 build/
+gradle/
+gradlew
+gradlew.bat
