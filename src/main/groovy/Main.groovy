@@ -2,6 +2,7 @@ import csv.performance.CsvReader
 import csv.performance.Java7Base
 import csv.performance.Java7CommonsSplit
 import csv.performance.Java7GuavaSplit
+import csv.performance.Java7MemoryMappedByteBuffer
 import csv.performance.Java7RandomAccessFile
 import csv.performance.Java7ReadingAndSplittingThread
 import csv.performance.Java8Stream
@@ -15,6 +16,7 @@ class Main {
         benchmarkImplementation(Java8Stream, path)
         benchmarkImplementation(Java7CommonsSplit, path)
         benchmarkImplementation(Java7GuavaSplit, path)
+        benchmarkImplementation(Java7MemoryMappedByteBuffer, path)
         benchmarkImplementation(Java7RandomAccessFile, path)
         benchmarkImplementation(Java7ReadingAndSplittingThread, path)
         deleteTestFile(path)
